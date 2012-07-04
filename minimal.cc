@@ -1,15 +1,25 @@
 #include <iostream>
 #include <algorithm>
 
-struct AStruct
+class A
 {
-    static const int M = 10;
+public:
+    static const int X = 10;
+    static int getX(){return 10;};
 };
+
+// will make the first case work
+// const int A::X;
 
 int main(int argc, char** argv)
 {
-    // doesn't work
-    std::cout << std::max(1, AStruct::M) << std::endl;
-    // does work
-    // std::cout << std::max(1, (int) AStruct::M) << std::endl;
+    // don't work
+    std::cout << std::max(1, A::X) << std::endl;
+    // std::cout << std::max<int>(1, A::X) << std::endl;
+    
+    // do work
+    // std::cout << std::max(1, (int) A::X) << std::endl;
+    // std::cout << A::X << std::endl;
+    // std::cout << std::max(1, A::getX()) << std::endl;        
+    // std::cout << A::getX() << std::endl;    
 }
